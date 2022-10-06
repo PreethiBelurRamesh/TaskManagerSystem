@@ -1,0 +1,131 @@
+
+<div>
+  <table class='table table-striped' aria-labelledby="tableLabel">
+    <thead>
+      <th>
+        Task Id
+      </th>
+    <th>
+      Task Status
+    </th>
+    <th>
+      Task Type
+    </th>
+    <th>
+      Task Description
+    </th>
+    <th>
+      Assigned To
+    </th>
+    <th>
+      Comment
+    </th>
+    <th>
+      Comment Type
+    </th>
+    <th>
+      Next Action Date
+    </th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let taskinfo of taskInformation">
+        <td>
+          {{taskinfo["taskId"]}}
+        </td>
+        <td>
+          {{taskinfo["taskStatusName"]}}
+        </td>
+        <td>
+          {{taskinfo["taskTypeName"]}}
+        </td>
+        <td>
+          {{taskinfo["taskDescription"]}}
+        </td>
+        <td>
+          {{taskinfo["assignedUserName"]}}
+        </td>
+        <td>
+          {{taskinfo["commentText"]}}
+        </td>
+        <td>
+          {{taskinfo["commentTypeName"]}}
+        </td>
+        <td>
+          {{taskinfo["nextActionDate"]}}
+        </td>
+        <td>
+          <input type="button" value="Edit" class="btn btn-primary" /> ||
+          <input type="button" value="Delete" class="btn btn-danger" />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div>
+  <input type="button" value="Create New Task" class="btn btn-primary" (click)="createTasks()" />
+</div>
+<div *ngIf="added"><input type="text" value="Added Successfully" /></div>
+
+<div class="form-group" *ngIf="visibleOnTaskCreation">
+  <form #taskInfo="ngForm" (ngSubmit)="onSubmit(taskInfo.value)">
+    <div class="table">
+      <div >
+        <div >
+          <label for="TaskDescription">Task Description: </label>
+        </div>
+        <div>
+          <input type="text" name="TaskDescription" class="form-control" ngModel />
+        </div>
+      </div>
+      <div >
+        <div >
+          <label for="Comment">Comment: </label>
+        </div>
+        <div >
+          <input type="text" name="Comment" class="form-control" ngModel />
+        </div>
+      </div>
+      <div >
+        <div >
+          <label for="RequiredBy">Required By: </label>
+        </div>
+        <div>
+          <input type="text" name="RequiredBy" class="form-control" ngModel />
+        </div>
+      </div>
+      <div >
+        <div >
+          <label for="taskType">Select Task Type: </label>
+          <select name="taskType" class="form-control" ngModel>
+            <option *ngFor="let tt of taskType" [value]="tt.taskTypeId">{{tt.taskTypeName}}</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <div>
+          <label for="taskStatus">Select Task Status: </label>
+          <select name="taskStatus" class="form-control" ngModel>
+            <option *ngFor="let ts of taskStatus" [value]="ts.taskStatusId">{{ts.taskStatusName}}</option>
+          </select>
+        </div>
+      </div>
+      <div >
+        <div >
+          <label for="commentType">Select Comment Type: </label>
+          <select name="commentType" class="form-control" ngModel>
+            <option *ngFor="let ct of commentType" [value]="ct.CommentTypeId">{{ct.CommentTypeName}}</option>
+          </select>
+        </div>
+      </div>
+      <div >
+        <div >
+          <label for="userName">User Name: </label>
+          <select name="userName" class="form-control" ngModel>
+            <option *ngFor="let tInfo of taskInformation" [value]="tInfo.assignedTo">{{tInfo.assignedUserName}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <input type="submit" value="Submit" class="btn btn-primary" />
+  </form>
+</div>
