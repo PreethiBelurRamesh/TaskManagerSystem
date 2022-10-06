@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { taskInformation } from '../models/taskInformation';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { taskType } from '../models/TaskType';
+import { taskType } from '../models/taskType';
 import { taskStatus } from '../models/taskStatus';
 import { commentType } from '../models/commentType';
 import { FormBuilder, FormControl } from '@angular/forms'
